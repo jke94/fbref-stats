@@ -74,7 +74,7 @@ def GenerateFullClassificationPNGFigures(urls, leagues, rows, columns):
     figure_full.tight_layout()
     figure_full.savefig(os.path.join('.\Classification', 'AllLeagues'), bbox_inches='tight')
 
-def GenerateFullGoalsForVsGoalsAgaintstPNGFigures(urls, leagues, rows, columns):
+def GenerateFullGoalsForVsGoalsAgainstPNGFigures(urls, leagues, rows, columns):
 
     """Generates an image with subplots of images about local goals vs against goals set of leagues.
 
@@ -114,7 +114,7 @@ def GenerateFullGoalsForVsGoalsAgaintstPNGFigures(urls, leagues, rows, columns):
     figure_full.tight_layout()
     figure_full.savefig(os.path.join('.\Goals', 'AllLeagues'), bbox_inches='tight')
 
-def GenerateGoalsForVsGoalsAgaintstPNGFigures(urls, leagues):
+def GenerateGoalsForVsGoalsAgainstPNGFigures(urls, leagues):
 
     """Generates a set of images about local goals vs against goals set of leagues.
 
@@ -160,5 +160,5 @@ if __name__ == "__main__":
 
     GenerateFullClassificationPNGFigures(urls, leagues, 2, 3)
     GenerateClassificationPNGFigures(urls, leagues)
-    GenerateFullGoalsForVsGoalsAgaintstPNGFigures(urls, leagues, 2, 3)
-    GenerateGoalsForVsGoalsAgaintstPNGFigures(urls, leagues)
+    GenerateFullGoalsForVsGoalsAgainstPNGFigures(urls, leagues, 2, 3)
+    GenerateGoalsForVsGoalsAgainstPNGFigures(urls, leagues)
