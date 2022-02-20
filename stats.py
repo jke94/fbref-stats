@@ -94,7 +94,7 @@ def GenerateFullGoalsForVsGoalsAgainstPNGFigures(urls, leagues, rows, columns):
         os.makedirs('Goals')
 
     figure_full, axs = plt.subplots(nrows=rows, ncols=columns, figsize=(15, 10))
-    figure_full.suptitle('Goals For (GF) Vs Goals Againtst (GA) (Twitter: @JaviKarra94)')
+    figure_full.suptitle('Goals for (GF) Vs Goals against (GA) (Twitter: @JaviKarra94)')
 
     dataframes = []
     plots = []
