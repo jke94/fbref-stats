@@ -31,6 +31,8 @@ if __name__ == "__main__":
 
     c = classification.Classification(urls=urls, leagues=leagues)
     c.GenerateClassificationPNGFigures()
+    c.GenerateFullClassificationPNGFigures(3,2)
 
     g = goals.Goals(urls=urls, leagues=leagues)
     g.GenerateGoalsForVsGoalsAgainstPNGFigures()
+    g.GenerateFullGoalsForVsGoalsAgainstPNGFigures(3,2)
