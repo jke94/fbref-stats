@@ -129,5 +129,4 @@ dmypy.json
 .pyre/
 
 # Output Images
-Classification/
-Goals/
+*.png
