@@ -9,6 +9,7 @@ __status__ = "Production"
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import random
 
 class Goals:
     def __init__(self, urls, leagues):
@@ -78,3 +79,24 @@ class Goals:
             plot = clasificacion.plot(x="Squad", y=["GF","GA"], kind="bar", xlabel ="Teams", ylabel = "Goals")
             fig = plot.get_figure()
             fig.savefig(os.path.join('.\Goals', self.leagues[item].strip()), bbox_inches='tight')
+
+    def GeneratePlotWithGoalsAndAssistsInSeveralLeagues(self):
+        
+        s = 'A0B123456789CDEF'
+        colors = ["#"+''.join([random.choice(s) for i in range(6)])
+                        for j in range(len(self.urls))]
+        fig, ax = plt.subplots()
+
+        for i in  range(0, len(self.urls)):
+            dfs = pd.read_html(self.urls[i])
+            df = dfs[2]
+
+            dataframe= df['Performance'][['Gls','Ast']].join(df['Unnamed: 0_level_0']['Squad'])
+            dataframe.plot(x='Gls', y='Ast', kind='scatter', ax=ax, color=colors[i], xlabel = "Goals", ylabel = "Assists")
+        
+        ax.grid(axis='y', linestyle='--')
+        ax.grid(axis='x', linestyle='--')
+        ax.legend(self.leagues)
+
+        fig.suptitle('Goals and assists (Twitter: @JaviKarra94)')
+        fig.savefig('Gls+Ast', dpi=900, bbox_inches='tight')

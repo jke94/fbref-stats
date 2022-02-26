@@ -9,11 +9,38 @@ __status__ = "Production"
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import logging
+from datetime import datetime
 
 class Classification:
+    
     def __init__(self, urls, leagues):
+
+        self.__date = ''.join([datetime.now().strftime("%m-%d-%Y"), '.log'])
         self.urls = urls
         self.leagues = leagues
+        
+        self.__InitializeLogging()
+
+    def __InitializeLogging(self, logs_directory='.\logs'):
+
+        """Initialize logging directory and logging file.
+
+        Parameters
+        ----------
+        logs_directory : string
+            Logs directory.
+        log_name : string
+            Log name directory.
+
+        """
+        if not os.path.exists('logs'):
+            os.makedirs('logs')
+        
+        logging.basicConfig(
+            filename=os.path.join(logs_directory, self.__date), 
+            encoding='utf-8',
+            level=logging.INFO)
 
     def GenerateClassificationPNGFigures(self):
 
@@ -35,9 +62,13 @@ class Classification:
 
             dfs = pd.read_html(self.urls[item])
             clasificacion = dfs[0]
+            file = os.path.join('.\Classification', self.leagues[item].strip())
+
             plot = clasificacion.plot(x="Squad", y=["Pts"], kind="bar", xlabel ="Teams", ylabel = "Points")
             fig = plot.get_figure()
-            fig.savefig(os.path.join('.\Classification', self.leagues[item].strip()), bbox_inches='tight')
+            fig.savefig(file, bbox_inches='tight')
+        
+            logging.info('Created file: %s', file)
 
     def GenerateFullClassificationPNGFigures(self, rows, columns):
 

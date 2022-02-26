@@ -8,31 +8,15 @@ __status__ = "Production"
 
 from statistics.classification import classification
 from statistics.goals import goals
+from statistics.constants import FbrefUrl, League
 
 if __name__ == "__main__":
 
-    urls = [
-        "https://fbref.com/en/comps/12/La-Liga-Stats",          # La Liga (ESP)
-        "https://fbref.com/en/comps/9/Premier-League-Stats",    # Premiere League (ENG)
-        "https://fbref.com/en/comps/11/Serie-A-Stats",          # Serie A (ITA)
-        "https://fbref.com/en/comps/13/Ligue-1-Stats",          # Ligue 1 (FRA)
-        "https://fbref.com/en/comps/20/Bundesliga-Stats",       # Bundesliga (ALE)
-        "https://fbref.com/en/comps/23/Eredivisie-Stats"        # Eredivisie (NED)
-    ]
-
-    leagues = [
-        'La Liga (ESP)', 
-        'Premiere League (ENG)', 
-        'Serie A (ITA)', 
-        'Ligue 1 (FRA)',
-        'Bundesliga (ALE)',
-        'Eredivisie (NED)'
-    ]
-
-    c = classification.Classification(urls=urls, leagues=leagues)
+    c = classification.Classification(urls=FbrefUrl.URLS, leagues=League.LEAGUES)
     c.GenerateClassificationPNGFigures()
     c.GenerateFullClassificationPNGFigures(3,2)
 
-    g = goals.Goals(urls=urls, leagues=leagues)
+    g = goals.Goals(urls=FbrefUrl.URLS, leagues=League.LEAGUES)
     g.GenerateGoalsForVsGoalsAgainstPNGFigures()
     g.GenerateFullGoalsForVsGoalsAgainstPNGFigures(3,2)
+    g.GeneratePlotWithGoalsAndAssistsInSeveralLeagues()
